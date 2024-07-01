@@ -1,7 +1,7 @@
 let currentNumber = "";
 let previousNumber = "";
 let operator = "";
-let fullExpression = ""; // Stores the complete calculation expression for display
+let fullExpression = ""; 
 
 function appendNumber(number) {
   currentNumber += number;
@@ -23,7 +23,7 @@ function clearScreen() {
   currentNumber = "";
   previousNumber = "";
   operator = "";
-  fullExpression = ""; // Clear the full expression on clear
+  fullExpression = ""; 
   updateDisplay();
 }
 
@@ -35,7 +35,6 @@ function appendDecimal() {
 }
 
 function updateDisplay() {
-  // Build the full expression string dynamically
   fullExpression = previousNumber + operator + currentNumber;
   document.getElementById("result").value = fullExpression;
 }
@@ -59,5 +58,5 @@ function calculate() {
   currentNumber = result.toString();
   operator = "";
   previousNumber = "";
-  updateDisplay(); // Update display with final result
+  updateDisplay();
 }
