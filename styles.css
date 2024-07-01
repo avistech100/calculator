@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'lexend';
+    src: url(/Lexend_Deca/LexendDeca-VariableFont_wght.ttf);
+}
+body {
+    font-family: 'lexend';
+}
+
+.main {
+    border: 1px solid #ccc;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 50px auto;
+    background-color: rgb(241, 241, 241);
+}
+.output{
+    grid-column: 1 /-1;
+}
+#equal{
+  grid-column: 1 /-1;
+}
+.output {
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid rgb(0, 92, 116);
+    border-radius: 5px;
+    outline: none;
+    background-color: #eee;
+    text-align: right;
+    font-family: 'lexend';
+}
+
+button {
+    padding: 10px;
+    background-color: white;
+    border: 1.9px solid rgb(0, 92, 116);
+    border-radius: 5px;
+    font-family: 'lexend';
+    color: rgb(0, 92, 116);
+
+}
+
+button:hover {
+    background-color: #ddd;
+}
+#class{
+    background: linear-gradient(to bottom, rgb(255, 0, 0) 5%, rgb(33, 195, 207) 90%);
+    border: none;
+    color: white;
+}
