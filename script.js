@@ -9,7 +9,6 @@ function appendNumber(number) {
 }
 
 function appendOperator(op) {
-  // Handle potential calculation if previous operator and current number exist
   if (operator !== "" && currentNumber !== "") {
     calculate();
   }
