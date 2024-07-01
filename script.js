@@ -1,42 +1,47 @@
-var currentNumber = "";
-var previousNumber = "";
-var operator = "";
+let currentNumber = "";
+let previousNumber = "";
+let operator = "";
+let fullExpression = ""; // Stores the complete calculation expression for display
 
 function appendNumber(number) {
   currentNumber += number;
-  document.getElementById("result").value = currentNumber;
+  updateDisplay();
 }
 
 function appendOperator(op) {
-  // Save the current number as the previous number
+  // Handle potential calculation if previous operator and current number exist
+  if (operator !== "" && currentNumber !== "") {
+    calculate();
+  }
   previousNumber = currentNumber;
-  // Reset the current number for the next input
   currentNumber = "";
   operator = op;
-  document.getElementById("result").value = previousNumber + " " + operator; // Optionally display operator
+  updateDisplay();
 }
 
 function clearScreen() {
   currentNumber = "";
   previousNumber = "";
   operator = "";
-  document.getElementById("result").value = "";
+  fullExpression = ""; // Clear the full expression on clear
+  updateDisplay();
 }
 
 function appendDecimal() {
   if (!currentNumber.includes(".")) {
     currentNumber += ".";
-    document.getElementById("result").value = currentNumber;
   }
+  updateDisplay();
+}
+
+function updateDisplay() {
+  // Build the full expression string dynamically
+  fullExpression = previousNumber + operator + currentNumber;
+  document.getElementById("result").value = fullExpression;
 }
 
 function calculate() {
   let result = 0;
-  // Check if previousNumber and currentNumber are valid before calculating
-  if (previousNumber === "" || currentNumber === "") {
-    return; // If either is empty, exit the function
-  }
-
   switch (operator) {
     case "+":
       result = parseFloat(previousNumber) + parseFloat(currentNumber);
@@ -50,12 +55,9 @@ function calculate() {
     case "/":
       result = parseFloat(previousNumber) / parseFloat(currentNumber);
       break;
-    default:
-      return; // If no valid operator, exit the function
   }
-  
   currentNumber = result.toString();
   operator = "";
   previousNumber = "";
-  document.getElementById("result").value = currentNumber;
+  updateDisplay(); // Update display with final result
 }
