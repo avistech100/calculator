@@ -8,10 +8,12 @@ function appendNumber(number) {
 }
 
 function appendOperator(op) {
+  // Save the current number as the previous number
   previousNumber = currentNumber;
-  currentNumber += op;
+  // Reset the current number for the next input
+  currentNumber = "";
   operator = op;
-  document.getElementById("result").value = currentNumber;
+  document.getElementById("result").value = previousNumber + " " + operator; // Optionally display operator
 }
 
 function clearScreen() {
@@ -30,6 +32,11 @@ function appendDecimal() {
 
 function calculate() {
   let result = 0;
+  // Check if previousNumber and currentNumber are valid before calculating
+  if (previousNumber === "" || currentNumber === "") {
+    return; // If either is empty, exit the function
+  }
+
   switch (operator) {
     case "+":
       result = parseFloat(previousNumber) + parseFloat(currentNumber);
@@ -43,7 +50,10 @@ function calculate() {
     case "/":
       result = parseFloat(previousNumber) / parseFloat(currentNumber);
       break;
+    default:
+      return; // If no valid operator, exit the function
   }
+  
   currentNumber = result.toString();
   operator = "";
   previousNumber = "";
